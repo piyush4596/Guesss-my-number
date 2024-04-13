@@ -5,8 +5,9 @@ let highscore = 0;
 const displayMsg = function (message) {
   document.querySelector(".message").textContent = message;
 };
+// document.querySelector(".check").addEventListener("click", gameLogic);
 
-document.querySelector(".check").addEventListener("click", function () {
+let gameLogic = function () {
   const guess = Number(document.querySelector(".guess").value);
   console.log(guess);
   if (!guess) {
@@ -50,7 +51,8 @@ document.querySelector(".check").addEventListener("click", function () {
     displayMsg("Game Over");
     document.querySelector(".score").textContent = 0;
   }
-});
+};
+document.querySelector(".check").addEventListener("click", gameLogic);
 
 document.querySelector(".restart").addEventListener("click", function () {
   score = 20;
@@ -61,4 +63,10 @@ document.querySelector(".restart").addEventListener("click", function () {
   document.querySelector(".guess").value = "";
   document.querySelector(".contain").style.background =
     "linear-gradient(2900deg, #13cc3b, #00102b";
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    gameLogic();
+  }
 });
